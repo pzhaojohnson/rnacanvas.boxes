@@ -20,4 +20,44 @@ describe('Box class', () => {
     expect(box.width).toBe(-101.559);
     expect(box.height).toBe(102.823);
   });
+
+  test('top getter', () => {
+    // positive height
+    let box = new Box(55, 6.027, -8.88, 12.55);
+    expect(box.top).toBeCloseTo(6.027);
+
+    // negative height
+    box = new Box(2.3, 15.82, 8.7, -9.003);
+    expect(box.top).toBeCloseTo(15.82 + (-9.003));
+  });
+
+  test('right getter', () => {
+    // positive width
+    let box = new Box(880.2, 5.1, 22.9804, 13);
+    expect(box.right).toBeCloseTo(880.2 + 22.9804);
+
+    // negative width
+    box = new Box(-9.05, 22.01, -51.27, 15);
+    expect(box.right).toBeCloseTo(-9.05);
+  });
+
+  test('bottom getter', () => {
+    // positive height
+    let box = new Box(55, 6.027, -8.88, 12.55);
+    expect(box.bottom).toBeCloseTo(6.027 + 12.55);
+
+    // negative height
+    box = new Box(2.3, 15.82, 8.7, -9.003);
+    expect(box.bottom).toBeCloseTo(15.82);
+  });
+
+  test('left getter', () => {
+    // positive width
+    let box = new Box(880.2, 5.1, 22.9804, 13);
+    expect(box.left).toBeCloseTo(880.2);
+
+    // negative width
+    box = new Box(-9.05, 22.01, -51.27, 15);
+    expect(box.left).toBeCloseTo((-9.05) + (-51.27));
+  });
 });
