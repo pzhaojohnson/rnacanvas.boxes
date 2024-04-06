@@ -89,4 +89,28 @@ export class Box {
   get left(): number {
     return Math.min(this.x, this.x + this.width);
   }
+
+  /**
+   * Creates and returns a new box with the specified horizontal and vertical paddings
+   * around the original box this method was called upon.
+   *
+   * If the original box this method was called upon had negative width and/or height,
+   * then the returned padded box will also have negative width and/or height.
+   *
+   * The specified horizontal and vertical paddings are allowed to be negative
+   * (to make a padded box smaller than the original box)
+   * and could potentially flip the signs (e.g., from positive to negative, and vice versa)
+   * of the returned box's width and/or height if they are large enough in magnitude.
+   */
+  padded(horizontalPadding: number, verticalPadding: number): Box {
+    horizontalPadding = this.width < 0 ? -horizontalPadding : horizontalPadding;
+    verticalPadding = this.height < 0 ? -verticalPadding : verticalPadding;
+
+    return new Box(
+      this.x - horizontalPadding,
+      this.y - verticalPadding,
+      this.width + (2 * horizontalPadding),
+      this.height + (2 * verticalPadding),
+    );
+  }
 }

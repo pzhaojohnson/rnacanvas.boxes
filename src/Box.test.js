@@ -132,4 +132,46 @@ describe('Box class', () => {
     box = new Box(-9.05, 22.01, -51.27, 15);
     expect(box.left).toBeCloseTo((-9.05) + (-51.27));
   });
+
+  describe('padded method', () => {
+    test('positive width and height and positive paddings', () => {
+      let box1 = new Box(55, 23, 82, 94);
+      let box2 = box1.padded(24, 72);
+
+      let { x, y, width, height } = box2;
+      expect({ x, y, width, height }).toStrictEqual({ x: 31, y: -49, width: 130, height: 238 });
+    });
+
+    test('negative width and positive horizontal padding', () => {
+      let box1 = new Box(23, 31, -92, 155);
+      let box2 = box1.padded(52, 18);
+
+      let { x, y, width, height } = box2;
+      expect({ x, y, width, height }).toStrictEqual({ x: 75, y: 13, width: -196, height: 191 });
+    });
+
+    test('negative height and positive vertical padding', () => {
+      let box1 = new Box(25, 9, 22, -39);
+      let box2 = box1.padded(41, 17);
+
+      let { x, y, width, height } = box2;
+      expect({ x, y, width, height }).toStrictEqual({ x: -16, y: 26, width: 104, height: -73 });
+    });
+
+    test('positive width and height and negative paddings', () => {
+      let box1 = new Box(8, 27, 121, 87);
+      let box2 = box1.padded(-24, -36);
+
+      let { x, y, width, height } = box2;
+      expect({ x, y, width, height }).toStrictEqual({ x: 32, y: 63, width: 73, height: 15 });
+    });
+
+    test('flipping the signs of width and height', () => {
+      let box1 = new Box(-5, -18, 27, 19);
+      let box2 = box1.padded(-34, -41);
+
+      let { x, y, width, height } = box2;
+      expect({ x, y, width, height }).toStrictEqual({ x: 29, y: 23, width: -41, height: -63 });
+    });
+  });
 });
