@@ -68,6 +68,26 @@ describe('Box class', () => {
     expect(box.height).toBe(102.823);
   });
 
+  test('minX getter', () => {
+    let box = new Box(880.2, 5.1, 22.9804, 13);
+    expect(box.minX).toBeCloseTo(880.2);
+  });
+
+  test('minY getter', () => {
+    let box = new Box(55, 6.027, 8.88, 12.55);
+    expect(box.minY).toBeCloseTo(6.027);
+  });
+
+  test('maxX getter', () => {
+    let box = new Box(880.2, 5.1, 22.9804, 13);
+    expect(box.maxX).toBeCloseTo(880.2 + 22.9804);
+  });
+
+  test('maxY getter', () => {
+    let box = new Box(55, 6.027, 8.88, 12.55);
+    expect(box.maxY).toBeCloseTo(6.027 + 12.55);
+  });
+
   test('top getter', () => {
     let box = new Box(55, 6.027, 8.88, 12.55);
     expect(box.top).toBeCloseTo(6.027);

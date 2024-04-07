@@ -53,31 +53,59 @@ export class Box {
   constructor(readonly x: number, readonly y: number, readonly width: number, readonly height: number) {}
 
   /**
+   * The minimum X coordinate of the box.
+   */
+  get minX(): number {
+    return this.x;
+  }
+
+  /**
    * The minimum Y coordinate of the box.
    */
-  get top(): number {
+  get minY(): number {
     return this.y;
   }
 
   /**
    * The maximum X coordinate of the box.
    */
+  get maxX(): number {
+    return this.minX + this.width;
+  }
+
+  /**
+   * The maximum Y coordinate of the box.
+   */
+  get maxY(): number {
+    return this.minY + this.height;
+  }
+
+  /**
+   * The minimum Y coordinate of the box.
+   */
+  get top(): number {
+    return this.minY;
+  }
+
+  /**
+   * The maximum X coordinate of the box.
+   */
   get right(): number {
-    return this.x + this.width;
+    return this.maxX;
   }
 
   /**
    * The maximum Y coordinate of the box.
    */
   get bottom(): number {
-    return this.y + this.height;
+    return this.maxY;
   }
 
   /**
    * The minimum X coordinate of the box.
    */
   get left(): number {
-    return this.x;
+    return this.minX;
   }
 
   /**
