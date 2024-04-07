@@ -112,10 +112,17 @@ export class Box {
    * Creates and returns a new box with the specified horizontal and vertical paddings
    * around the original box this method was called upon.
    *
+   * If vertical padding is left unspecified, it is interpreted to be the same as
+   * the horizontal padding.
+   *
    * The specified horizontal and vertical paddings are allowed to be negative
    * (to produce a box smaller than the original box).
    */
-  padded(horizontalPadding: number, verticalPadding: number): Box {
+  padded(horizontalPadding: number, verticalPadding?: number): Box {
+    if (typeof verticalPadding != 'number') {
+      verticalPadding = horizontalPadding;
+    }
+
     return new Box(
       this.x - horizontalPadding,
       this.y - verticalPadding,

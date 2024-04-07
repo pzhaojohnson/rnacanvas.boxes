@@ -124,5 +124,13 @@ describe('Box class', () => {
       let { x, y, width, height } = box2;
       expect({ x, y, width, height }).toStrictEqual({ x: 32, y: 63, width: 73, height: 15 });
     });
+
+    test('specifying only horizontal padding', () => {
+      let box1 = new Box(50, -212, 802, 503.4);
+      let box2 = box1.padded(28.5);
+
+      let { x, y, width, height } = box2;
+      expect({ x, y, width, height }).toStrictEqual({ x: 21.5, y: -240.5, width: 859, height: 560.4 });
+    });
   });
 });
