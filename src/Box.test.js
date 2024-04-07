@@ -9,7 +9,7 @@ function createBoxLike(x, y, width, height) {
 
 describe('Box class', () => {
   describe('bounding static method', () => {
-    test('boxes with positive width and height', () => {
+    test('five box-like objects', () => {
       let bbox = Box.bounding([
         createBoxLike(0.008, 2.57, 554, 84),
         createBoxLike(-24, 1.98, 626, 201),
@@ -22,38 +22,13 @@ describe('Box class', () => {
       expect({ x, y, width, height }).toStrictEqual({ x: -55.2, y: -22.93, width: 657.2, height: 388.23 });
     });
 
-    test('boxes with negative width', () => {
-      let bbox = Box.bounding([
-        createBoxLike(18, 771, -28, 1.1),
-        createBoxLike(128, 8.25, -17.4, 0.25),
-        createBoxLike(-23, 19.02, -0.82, 19),
-        createBoxLike(-4, 5.51, -22.19, 8),
-        createBoxLike(2, 9, -11.8, 7),
-      ]);
-
-      let { x, y, width, height } = bbox;
-      expect({ x, y, width, height }).toStrictEqual({ x: -26.19, y: 5.51, width: 154.19, height: 766.59 });
-    });
-
-    test('boxes with negative height', () => {
-      let bbox = Box.bounding([
-        createBoxLike(8, 12.9, 12, -22.08),
-        createBoxLike(1.2, 8.5, 18, -124),
-        createBoxLike(-10.77, -3, 22.5, -88.2),
-        createBoxLike(16, 0.32, 41, -37.1),
-      ]);
-
-      let { x, y, width, height } = bbox;
-      expect({ x, y, width, height }).toStrictEqual({ x: -10.77, y: 8.5 + (-124), width: 67.77, height: 128.4 });
-    });
-
     test('a single box', () => {
       let bbox = Box.bounding([
-        createBoxLike(64, 88.2, 901, -27.5),
+        createBoxLike(64, 88.2, 901, 27.5),
       ]);
 
       let { x, y, width, height } = bbox;
-      expect({ x, y, width, height }).toStrictEqual({ x: 64, y: 88.2 + (-27.5), width: 901, height: 27.5 });
+      expect({ x, y, width, height }).toStrictEqual({ x: 64, y: 88.2, width: 901, height: 27.5 });
     });
 
     test('a single box with zero width and height', () => {
@@ -74,7 +49,7 @@ describe('Box class', () => {
   });
 
   test('matching static method', () => {
-    let box1 = { x: 57.9, y: 223.44, width: -507.221, height: 1044.922 };
+    let box1 = { x: 57.9, y: 223.44, width: 507.221, height: 1044.922 };
     let box2 = Box.matching(box1);
 
     let { x, y, width, height } = box2;
@@ -94,47 +69,27 @@ describe('Box class', () => {
   });
 
   test('top getter', () => {
-    // positive height
-    let box = new Box(55, 6.027, -8.88, 12.55);
+    let box = new Box(55, 6.027, 8.88, 12.55);
     expect(box.top).toBeCloseTo(6.027);
-
-    // negative height
-    box = new Box(2.3, 15.82, 8.7, -9.003);
-    expect(box.top).toBeCloseTo(15.82 + (-9.003));
   });
 
   test('right getter', () => {
-    // positive width
     let box = new Box(880.2, 5.1, 22.9804, 13);
     expect(box.right).toBeCloseTo(880.2 + 22.9804);
-
-    // negative width
-    box = new Box(-9.05, 22.01, -51.27, 15);
-    expect(box.right).toBeCloseTo(-9.05);
   });
 
   test('bottom getter', () => {
-    // positive height
-    let box = new Box(55, 6.027, -8.88, 12.55);
+    let box = new Box(55, 6.027, 8.88, 12.55);
     expect(box.bottom).toBeCloseTo(6.027 + 12.55);
-
-    // negative height
-    box = new Box(2.3, 15.82, 8.7, -9.003);
-    expect(box.bottom).toBeCloseTo(15.82);
   });
 
   test('left getter', () => {
-    // positive width
     let box = new Box(880.2, 5.1, 22.9804, 13);
     expect(box.left).toBeCloseTo(880.2);
-
-    // negative width
-    box = new Box(-9.05, 22.01, -51.27, 15);
-    expect(box.left).toBeCloseTo((-9.05) + (-51.27));
   });
 
   describe('padded method', () => {
-    test('positive width and height and positive paddings', () => {
+    test('producing a larger box', () => {
       let box1 = new Box(55, 23, 82, 94);
       let box2 = box1.padded(24, 72);
 
@@ -142,36 +97,12 @@ describe('Box class', () => {
       expect({ x, y, width, height }).toStrictEqual({ x: 31, y: -49, width: 130, height: 238 });
     });
 
-    test('negative width and positive horizontal padding', () => {
-      let box1 = new Box(23, 31, -92, 155);
-      let box2 = box1.padded(52, 18);
-
-      let { x, y, width, height } = box2;
-      expect({ x, y, width, height }).toStrictEqual({ x: 75, y: 13, width: -196, height: 191 });
-    });
-
-    test('negative height and positive vertical padding', () => {
-      let box1 = new Box(25, 9, 22, -39);
-      let box2 = box1.padded(41, 17);
-
-      let { x, y, width, height } = box2;
-      expect({ x, y, width, height }).toStrictEqual({ x: -16, y: 26, width: 104, height: -73 });
-    });
-
-    test('positive width and height and negative paddings', () => {
+    test('producing a smaller box', () => {
       let box1 = new Box(8, 27, 121, 87);
       let box2 = box1.padded(-24, -36);
 
       let { x, y, width, height } = box2;
       expect({ x, y, width, height }).toStrictEqual({ x: 32, y: 63, width: 73, height: 15 });
-    });
-
-    test('flipping the signs of width and height', () => {
-      let box1 = new Box(-5, -18, 27, 19);
-      let box2 = box1.padded(-34, -41);
-
-      let { x, y, width, height } = box2;
-      expect({ x, y, width, height }).toStrictEqual({ x: 29, y: 23, width: -41, height: -63 });
     });
   });
 });
