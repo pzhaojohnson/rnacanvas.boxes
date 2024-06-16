@@ -108,6 +108,10 @@ export class Box {
     return this.minX;
   }
 
+  /**
+   * Returns true if the box is bounded by the other box-like object
+   * and returns false otherwise.
+   */
   isBoundedBy(other: BoxLike): boolean {
     let otherBox = Box.matching(other);
 
