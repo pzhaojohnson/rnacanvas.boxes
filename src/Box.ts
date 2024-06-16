@@ -108,6 +108,17 @@ export class Box {
     return this.minX;
   }
 
+  isBoundedBy(other: BoxLike): boolean {
+    let otherBox = Box.matching(other);
+
+    return (
+      this.minX >= otherBox.minX
+      && this.minY >= otherBox.minY
+      && this.maxX <= otherBox.maxX
+      && this.maxY <= otherBox.maxY
+    );
+  }
+
   /**
    * Creates and returns a new box with the specified horizontal and vertical paddings
    * around the original box this method was called upon.

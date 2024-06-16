@@ -108,6 +108,23 @@ describe('Box class', () => {
     expect(box.left).toBeCloseTo(880.2);
   });
 
+  test('isBoundedBy method', () => {
+    let box = new Box(-21, 83, 105, 741);
+    expect(box.isBoundedBy({ x: -21, y: 83, width: 105, height: 741 })).toBe(true);
+
+    expect(box.isBoundedBy({ x: -20, y: 83, width: 104, height: 741 })).toBe(false);
+    expect(box.isBoundedBy({ x: -22, y: 83, width: 106, height: 741 })).toBe(true);
+
+    expect(box.isBoundedBy({ x: -21, y: 84, width: 105, height: 740 })).toBe(false);
+    expect(box.isBoundedBy({ x: -21, y: 82, width: 105, height: 742 })).toBe(true);
+
+    expect(box.isBoundedBy({ x: -21, y: 83, width: 104, height: 741 })).toBe(false);
+    expect(box.isBoundedBy({ x: -21, y: 83, width: 106, height: 741 })).toBe(true);
+
+    expect(box.isBoundedBy({ x: -21, y: 83, width: 105, height: 740 })).toBe(false);
+    expect(box.isBoundedBy({ x: -21, y: 83, width: 105, height: 742 })).toBe(true);
+  });
+
   describe('padded method', () => {
     test('producing a larger box', () => {
       let box1 = new Box(55, 23, 82, 94);
