@@ -53,6 +53,20 @@ export class Box {
   constructor(readonly x: number, readonly y: number, readonly width: number, readonly height: number) {}
 
   /**
+   * Center X coordinate.
+   */
+  get centerX(): number {
+    return this.minX + (this.width / 2);
+  }
+
+  /**
+   * Center Y coordinate.
+   */
+  get centerY(): number {
+    return this.minY + (this.height / 2);
+  }
+
+  /**
    * The minimum X coordinate of the box.
    */
   get minX(): number {
