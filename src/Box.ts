@@ -159,4 +159,48 @@ export class Box {
       this.height + (2 * verticalPadding),
     );
   }
+
+  /**
+   * Returns the point on the periphery of the box
+   * at the given angle in reference to the center point of the box.
+   */
+  peripheralPoint(angle: number): Point {
+    let halfWidth = this.width / 2;
+    let halfHeight = this.height / 2;
+
+    // the radius of the circle that is tangent to the corners of the box
+    let circleRadius = (halfWidth**2 + halfHeight**2)**0.5;
+
+    let pointOnCircle = {
+      x: this.centerX + (circleRadius * Math.cos(angle)),
+      y: this.centerY + (circleRadius * Math.sin(angle)),
+    };
+
+    // the distance from the center of the box for the point on the periphery of the box to be calculated
+    let distanceFromCenter = circleRadius;
+
+    if (Math.abs(this.centerX - pointOnCircle.x) > halfWidth) {
+      distanceFromCenter = Math.abs(halfWidth / Math.cos(angle));
+
+      // can become nonfinite when the angle is close to 90 or 270 degrees
+      distanceFromCenter = Number.isFinite(distanceFromCenter) ? distanceFromCenter : halfHeight;
+    }
+
+    if (Math.abs(this.centerY - pointOnCircle.y) > halfHeight) {
+      distanceFromCenter = Math.abs(halfHeight / Math.sin(angle));
+
+      // can become nonfinite when the angle is close to 0 or 180 degrees
+      distanceFromCenter = Number.isFinite(distanceFromCenter) ? distanceFromCenter : halfWidth;
+    }
+
+    return {
+      x: this.centerX + (distanceFromCenter * Math.cos(angle)),
+      y: this.centerY + (distanceFromCenter * Math.sin(angle)),
+    };
+  }
 }
+
+type Point = {
+  x: number;
+  y: number;
+};
