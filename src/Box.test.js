@@ -8,6 +8,17 @@ function createBoxLike(x, y, width, height) {
 }
 
 describe('Box class', () => {
+  test('matching static method', () => {
+    let box1 = { x: 57.9, y: 223.44, width: 507.221, height: 1044.922 };
+    let box2 = Box.matching(box1);
+
+    let { x, y, width, height } = box2;
+    expect({ x, y, width, height }).toStrictEqual(box1);
+
+    // created a new object
+    expect(box2).not.toBe(box1);
+  });
+
   describe('bounding static method', () => {
     test('five box-like objects', () => {
       let bbox = Box.bounding([
@@ -46,17 +57,6 @@ describe('Box class', () => {
       // still returns a box instance
       expect(bbox).toBeInstanceOf(Box);
     });
-  });
-
-  test('matching static method', () => {
-    let box1 = { x: 57.9, y: 223.44, width: 507.221, height: 1044.922 };
-    let box2 = Box.matching(box1);
-
-    let { x, y, width, height } = box2;
-    expect({ x, y, width, height }).toStrictEqual(box1);
-
-    // created a new object
-    expect(box2).not.toBe(box1);
   });
 
   test('constructor', () => {

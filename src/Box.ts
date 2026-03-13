@@ -17,6 +17,16 @@ type BoxLike = {
  */
 export class Box {
   /**
+   * Creates and returns a new box with the same X and Y origin coordinates and width and height
+   * as the input box-like object.
+   */
+  static matching(box: BoxLike): Box {
+    let { x, y, width, height } = box;
+
+    return new Box(x, y, width, height);
+  }
+
+  /**
    * Returns a new box exactly bounding (with no extra padding) the given box-like objects.
    *
    * Currently, it is not firmly defined what box is returned for an empty array of input box-like objects,
@@ -30,16 +40,6 @@ export class Box {
 
     let width = max(boxes.map(box => box.right)) - x;
     let height = max(boxes.map(box => box.bottom)) - y;
-
-    return new Box(x, y, width, height);
-  }
-
-  /**
-   * Creates and returns a new box with the same X and Y origin coordinates and width and height
-   * as the input box-like object.
-   */
-  static matching(box: BoxLike): Box {
-    let { x, y, width, height } = box;
 
     return new Box(x, y, width, height);
   }
