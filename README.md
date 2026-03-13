@@ -17,7 +17,7 @@ import { Box } from '@rnacanvas/boxes';
 
 ## `class Box`
 
-A 2D box.
+A two-dimensional box.
 
 ```javascript
 // minimum X and Y coordinates
@@ -50,8 +50,13 @@ box.maxY; // 100
 // a new box (with 10 padding on each side)
 var box2 = box.padded(10);
 
+// center X and Y coordinates are maintained
+box2.centerX; // 30
+box2.centerY; // 50
+
 box2.x; // 0
 box2.y; // 10
+
 box2.width; // 60
 box2.height; // 100
 ```
