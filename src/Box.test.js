@@ -161,6 +161,26 @@ describe('Box class', () => {
       let { x, y, width, height } = box2;
       expect({ x, y, width, height }).toStrictEqual({ x: 21.5, y: -240.5, width: 859, height: 560.4 });
     });
+
+    test('padding by relative factors', () => {
+      // width is larger
+      var box1 = new Box(-28, 5, 105, 53);
+      var box2 = box1.padded({ factor: 1.8 });
+
+      expect(box2.x).toBeCloseTo((-28) - (1.8 * 105));
+      expect(box2.y).toBeCloseTo(5 - (1.8 * 105));
+      expect(box2.width).toBeCloseTo(105 + (2 * 1.8 * 105));
+      expect(box2.height).toBeCloseTo(53 + (2 * 1.8 * 105));
+
+      // height is larger
+      var box1 = new Box(12, 50, 82, 91);
+      var box2 = box1.padded({ factor: 0.1 });
+
+      expect(box2.x).toBeCloseTo(12 - (0.1 * 91));
+      expect(box2.y).toBeCloseTo(50 - (0.1 * 91));
+      expect(box2.width).toBeCloseTo(82 + (2 * 0.1 * 91));
+      expect(box2.height).toBeCloseTo(91 + (2 * 0.1 * 91));
+    });
   });
 
   test('`peripheralPoint()`', () => {

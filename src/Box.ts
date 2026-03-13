@@ -137,20 +137,28 @@ export class Box {
     );
   }
 
+  padded(horizontalPadding: number): Box;
+  padded(horizontalPadding: number, verticalPadding: number): Box;
+  padded(options: { factor: number }): Box;
+
   /**
    * Creates and returns a new box with the specified horizontal and vertical paddings
    * around the original box this method was called upon.
    *
-   * If vertical padding is left unspecified, it is interpreted to be the same as
-   * the horizontal padding.
+   * Vertical padding is interpreted to be the same as horizontal padding if left unspecified.
    *
-   * The specified horizontal and vertical paddings are allowed to be negative
+   * Alternatively, horizontal and vertical paddings can be specified using a relative factor
+   * (relative to the larger dimension of the box).
+   *
+   * Horizontal and vertical paddings are allowed to be negative
    * (to produce a box smaller than the original box).
    */
-  padded(horizontalPadding: number, verticalPadding?: number): Box {
-    if (typeof verticalPadding != 'number') {
-      verticalPadding = horizontalPadding;
-    }
+  padded(...args: [number] | [number, number] | [{ factor: number }]): Box {
+    let largerDimension = max([this.width, this.height]);
+
+    let horizontalPadding = typeof args[0] == 'number' ? args[0] : args[0].factor * largerDimension;
+
+    let verticalPadding = typeof args[1] == 'number' ? args[1] : horizontalPadding;
 
     return new Box(
       this.x - horizontalPadding,
