@@ -60,3 +60,21 @@ box2.y; // 10
 box2.width; // 60
 box2.height; // 100
 ```
+
+### `static matching()`
+
+Boxes can be created matching the box-like objects returned by many DOM element methods (e.g., `getBBox()`).
+
+```javascript
+// an SVG circle element
+circle instanceof SVGCircleElement; // true
+
+var box = Box.matching(circle.getBBox());
+
+box.x == circle.getBBox().x; // true
+box.y == circle.getBBox().y; // true
+box.width == circle.getBBox().width; // true
+box.height == circle.getBBox().height; // true
+```
+
+<b>Note that DOM elements must be added to the document body for methods such as </b> `getBBox()` <b>to work.</b>
