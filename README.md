@@ -284,3 +284,31 @@ var box = new Box(0, 100, 10, 20);
 
 box.left; // 0
 ```
+
+### `bounds()`
+
+Returns `true` if the box bounds the other box.
+
+```javascript
+var box = new Box(0, 0, 10, 20);
+
+// exactly bounds
+box.bounds({ x: 0, y: 0, width: 10, height: 20 }); // true
+
+// maximum X coordinate is too great
+box.bounds({ x: 0, y: 0, width: 11, height: 20 }); // false
+
+// maximum Y coordinate is too great
+box.bounds({ x: 0, y: 0, width: 10, height: 21 }); // false
+```
+
+Instances of the `Box` class can also be input to the `bounds()` method.
+
+```javascript
+var box1 = new Box(0, 0, 10, 20);
+
+var box2 = new Box(0, 0, 5, 10);
+
+box1.bounds(box2); // true
+box2.bounds(box1); // false
+```
