@@ -106,6 +106,8 @@ box.height == circle.getBBox().height; // true
 
 Any object implementing the `BoxLike` interface (above) can be input to the `static matching()` method.
 
+Instances of the `Box` class can also be input to the `static matching()` method.
+
 ### `static bounding()`
 
 Boxes can also be created bounding a collection of box-like objects.
