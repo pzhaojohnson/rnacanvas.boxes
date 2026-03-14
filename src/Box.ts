@@ -29,11 +29,11 @@ export class Box {
   /**
    * Returns a new box exactly bounding (with no extra padding) the given box-like objects.
    *
-   * Currently, it is not firmly defined what box is returned for an empty array of input box-like objects,
+   * Currently, it is not firmly defined what box is returned for an empty collection of input box-like objects,
    * though this method will still return a box instance and won't throw.
    */
-  static bounding(boxLikes: BoxLike[]): Box {
-    let boxes = boxLikes.map(boxLike => Box.matching(boxLike));
+  static bounding(boxLikes: Iterable<BoxLike>): Box {
+    let boxes = [...boxLikes].map(boxLike => Box.matching(boxLike));
 
     let x = min(boxes.map(box => box.left));
     let y = min(boxes.map(box => box.top));
