@@ -295,10 +295,10 @@ var box = new Box(0, 0, 10, 20);
 // exactly bounds
 box.bounds({ x: 0, y: 0, width: 10, height: 20 }); // true
 
-// maximum X coordinate is too great
+// maximum X coordinate is too large
 box.bounds({ x: 0, y: 0, width: 11, height: 20 }); // false
 
-// maximum Y coordinate is too great
+// maximum Y coordinate is too large
 box.bounds({ x: 0, y: 0, width: 10, height: 21 }); // false
 ```
 
