@@ -130,6 +130,19 @@ This method will throw for empty collections of box-like objects.
 Box.bounding([]); // throws
 ```
 
+### `constructor()`
+
+Parameters are specified in the order of `x`, `y`, `width` and `height`.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.x; // 0
+box.y; // 100
+box.width; // 10
+box.height; // 20
+```
+
 ### `readonly x`
 
 Minimum X coordinate.
