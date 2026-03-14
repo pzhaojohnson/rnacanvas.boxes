@@ -113,3 +113,103 @@ This method will throw for empty collections of box-like objects.
 ```javascript
 Box.bounding([]); // throws
 ```
+
+### `get centerX()`
+
+Center X coordinate.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.centerX; // 5
+```
+
+### `get centerY()`
+
+Center Y coordinate.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.centerY; // 110
+```
+
+### `get minX()`
+
+Minimum X coordinate.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.minX; // 0
+```
+
+### `get minY()`
+
+Minimum Y coordinate.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.minY; // 100
+```
+
+### `get maxX()`
+
+Maximum X coordinate.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.maxX; // 10
+```
+
+### `get maxY()`
+
+Maximum Y coordinate.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.maxY; // 120
+```
+
+### `get top()`
+
+Minimum Y coordinate.
+
+```javasript
+var box = new Box(0, 100, 10, 20);
+
+box.top; // 100
+```
+
+### `get right()`
+
+Maximum X coordinate.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.right; // 10
+```
+
+### `get bottom()`
+
+Maximum Y coordinate.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.bottom; // 120
+```
+
+### `get left()`
+
+Minimum X coordinate.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.left; // 0
+```
