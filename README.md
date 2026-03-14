@@ -355,7 +355,7 @@ var box2 = box1.padded({ factor: 0.1 });
 
 box2.minX; // -1
 box2.minY; // -2
-box2.maxX; // 1
+box2.maxX; // 11
 box2.maxY; // 22
 ```
 
@@ -369,6 +369,6 @@ var box2 = box1.padded({ percentage: 10 });
 
 box2.minX; // -1
 box2.minY; // -2
-box2.maxX; // 1
+box2.maxX; // 11
 box2.maxY; // 22
 ```
