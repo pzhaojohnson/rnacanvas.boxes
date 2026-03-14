@@ -17,8 +17,8 @@ import { Box } from '@rnacanvas/boxes';
 
 ## `interface BoxLike`
 
-Many box-like objects returned by DOM element methods such as `getBBox()` and `getBoundingClientRect()`
-implement the following interface.
+DOM element methods such as `getBBox()` and `getBoundingClientRect()`
+often return box-like objects that implement the following interface.
 
 ```typescript
 interface BoxLike {
