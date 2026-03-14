@@ -249,7 +249,7 @@ box.maxY; // 120
 
 Minimum Y coordinate.
 
-```javasript
+```javascript
 var box = new Box(0, 100, 10, 20);
 
 box.top; // 100
