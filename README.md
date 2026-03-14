@@ -372,3 +372,31 @@ box2.minY; // -2
 box2.maxX; // 11
 box2.maxY; // 22
 ```
+
+### `readonly periphery`
+
+Represents the periphery of the box.
+
+The `atAngle()` method can be used to retrieve points on the periphery of a box.
+
+```javascript
+var box = new Box(0, 0, 2, 2);
+
+// the bottom-right corner of the box
+var point = box.periphery.atAngle(Math.PI / 4);
+
+point.x; // 1
+point.y; // 1
+
+// the bottom-left corner of the box
+box.periphery.atAngle(3 * Math.PI / 4).x; // -1
+box.periphery.atAngle(3 * Math.PI / 4).y; // 1
+
+// the top-left corner of the box
+box.periphery.atAngle(5 * Math.PI / 4).x; // -1
+box.periphery.atAngle(5 * Math.PI / 4).y; // -1
+
+// the top-right corner of the box
+box.periphery.atAngle(7 * Math.PI / 4).x; // 1
+box.periphery.atAngle(7 * Math.PI / 4).y; // -1
+```
