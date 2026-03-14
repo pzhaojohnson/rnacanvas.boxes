@@ -1,63 +1,57 @@
 import { Box } from './Box';
 
-/**
- * Creates and returns a new box-like object.
- */
-function createBoxLike(x, y, width, height) {
-  return { x, y, width, height };
-}
+describe('`class Box`', () => {
+  test('`static matching()`', () => {
+    var box1 = { x: 57.9, y: 223.44, width: 507.221, height: 1044.922 };
 
-describe('Box class', () => {
-  test('matching static method', () => {
-    let box1 = { x: 57.9, y: 223.44, width: 507.221, height: 1044.922 };
-    let box2 = Box.matching(box1);
+    var box2 = Box.matching(box1);
 
-    let { x, y, width, height } = box2;
+    var { x, y, width, height } = box2;
+
     expect({ x, y, width, height }).toStrictEqual(box1);
 
     // created a new object
     expect(box2).not.toBe(box1);
   });
 
-  describe('bounding static method', () => {
-    test('five box-like objects', () => {
-      let bbox = Box.bounding([
-        createBoxLike(0.008, 2.57, 554, 84),
-        createBoxLike(-24, 1.98, 626, 201),
-        createBoxLike(-55.2, 1.1, 82, 364.2),
-        createBoxLike(28.1, -22.93, 22.51, 218),
-        createBoxLike(17, 88.8, 171.828, 21),
-      ]);
+  test('`static bounding()`', () => {
+    // five box-like objects
+    var bbox = Box.bounding([
+      BoxLike.create(0.008, 2.57, 554, 84),
+      BoxLike.create(-24, 1.98, 626, 201),
+      BoxLike.create(-55.2, 1.1, 82, 364.2),
+      BoxLike.create(28.1, -22.93, 22.51, 218),
+      BoxLike.create(17, 88.8, 171.828, 21),
+    ]);
 
-      let { x, y, width, height } = bbox;
-      expect({ x, y, width, height }).toStrictEqual({ x: -55.2, y: -22.93, width: 657.2, height: 388.23 });
-    });
+    var { x, y, width, height } = bbox;
 
-    test('a single box', () => {
-      let bbox = Box.bounding([
-        createBoxLike(64, 88.2, 901, 27.5),
-      ]);
+    expect({ x, y, width, height }).toStrictEqual({ x: -55.2, y: -22.93, width: 657.2, height: 388.23 });
 
-      let { x, y, width, height } = bbox;
-      expect({ x, y, width, height }).toStrictEqual({ x: 64, y: 88.2, width: 901, height: 27.5 });
-    });
+    // a single box
+    var bbox = Box.bounding([
+      BoxLike.create(64, 88.2, 901, 27.5),
+    ]);
 
-    test('a single box with zero width and height', () => {
-      let bbox = Box.bounding([
-        createBoxLike(15.02, -38.4, 0, 0),
-      ]);
+    var { x, y, width, height } = bbox;
 
-      let { x, y, width, height } = bbox;
-      expect({ x, y, width, height }).toStrictEqual({ x: 15.02, y: -38.4, width: 0, height: 0 });
-    });
+    expect({ x, y, width, height }).toStrictEqual({ x: 64, y: 88.2, width: 901, height: 27.5 });
 
-    test('an empty array of boxes', () => {
-      expect(() => Box.bounding([])).toThrow();
-    });
+    // a single box with zero width and height
+    var bbox = Box.bounding([
+      BoxLike.create(15.02, -38.4, 0, 0),
+    ]);
+
+    var { x, y, width, height } = bbox;
+
+    expect({ x, y, width, height }).toStrictEqual({ x: 15.02, y: -38.4, width: 0, height: 0 });
+
+    // an empty array of boxes
+    expect(() => Box.bounding([])).toThrow();
   });
 
-  test('constructor', () => {
-    let box = new Box(15.2, -28.3, -101.559, 102.823);
+  test('`constructor()`', () => {
+    var box = new Box(15.2, -28.3, -101.559, 102.823);
 
     expect(box.x).toBe(15.2);
     expect(box.y).toBe(-28.3);
@@ -66,54 +60,62 @@ describe('Box class', () => {
   });
 
   test('`get centerX()`', () => {
-    let box = new Box(27, -14, 82, 14);
+    var box = new Box(27, -14, 82, 14);
 
     expect(box.centerX).toBeCloseTo(27 + (82 / 2));
   });
 
   test('`get centerY()`', () => {
-    let box = new Box(-82, -19, 24, 15);
+    var box = new Box(-82, -19, 24, 15);
 
     expect(box.centerY).toBeCloseTo((-19) + (15 / 2));
   });
 
-  test('minX getter', () => {
-    let box = new Box(880.2, 5.1, 22.9804, 13);
+  test('`get minX()`', () => {
+    var box = new Box(880.2, 5.1, 22.9804, 13);
+
     expect(box.minX).toBeCloseTo(880.2);
   });
 
-  test('minY getter', () => {
-    let box = new Box(55, 6.027, 8.88, 12.55);
+  test('`get minY()', () => {
+    var box = new Box(55, 6.027, 8.88, 12.55);
+
     expect(box.minY).toBeCloseTo(6.027);
   });
 
-  test('maxX getter', () => {
-    let box = new Box(880.2, 5.1, 22.9804, 13);
+  test('`get maxX()', () => {
+    var box = new Box(880.2, 5.1, 22.9804, 13);
+
     expect(box.maxX).toBeCloseTo(880.2 + 22.9804);
   });
 
-  test('maxY getter', () => {
-    let box = new Box(55, 6.027, 8.88, 12.55);
+  test('`get maxY()', () => {
+    var box = new Box(55, 6.027, 8.88, 12.55);
+
     expect(box.maxY).toBeCloseTo(6.027 + 12.55);
   });
 
-  test('top getter', () => {
-    let box = new Box(55, 6.027, 8.88, 12.55);
+  test('`get top()', () => {
+    var box = new Box(55, 6.027, 8.88, 12.55);
+
     expect(box.top).toBeCloseTo(6.027);
   });
 
-  test('right getter', () => {
-    let box = new Box(880.2, 5.1, 22.9804, 13);
+  test('`get right()', () => {
+    var box = new Box(880.2, 5.1, 22.9804, 13);
+
     expect(box.right).toBeCloseTo(880.2 + 22.9804);
   });
 
-  test('bottom getter', () => {
-    let box = new Box(55, 6.027, 8.88, 12.55);
+  test('`get bottom()', () => {
+    var box = new Box(55, 6.027, 8.88, 12.55);
+
     expect(box.bottom).toBeCloseTo(6.027 + 12.55);
   });
 
-  test('left getter', () => {
-    let box = new Box(880.2, 5.1, 22.9804, 13);
+  test('`get left()', () => {
+    var box = new Box(880.2, 5.1, 22.9804, 13);
+
     expect(box.left).toBeCloseTo(880.2);
   });
 
@@ -140,61 +142,61 @@ describe('Box class', () => {
     expect(box.bounds({ x: -21, y: 83, width: 105, height: 742 })).toBe(false);
   });
 
-  describe('padded method', () => {
-    test('producing a larger box', () => {
-      let box1 = new Box(55, 23, 82, 94);
-      let box2 = box1.padded(24, 72);
+  test('`padded()`', () => {
+    // producing a larger box
+    var box1 = new Box(55, 23, 82, 94);
+    var box2 = box1.padded(24, 72);
 
-      let { x, y, width, height } = box2;
-      expect({ x, y, width, height }).toStrictEqual({ x: 31, y: -49, width: 130, height: 238 });
-    });
+    var { x, y, width, height } = box2;
 
-    test('producing a smaller box', () => {
-      let box1 = new Box(8, 27, 121, 87);
-      let box2 = box1.padded(-24, -36);
+    expect({ x, y, width, height }).toStrictEqual({ x: 31, y: -49, width: 130, height: 238 });
 
-      let { x, y, width, height } = box2;
-      expect({ x, y, width, height }).toStrictEqual({ x: 32, y: 63, width: 73, height: 15 });
-    });
+    // producing a smaller box
+    var box1 = new Box(8, 27, 121, 87);
+    var box2 = box1.padded(-24, -36);
 
-    test('specifying only horizontal padding', () => {
-      let box1 = new Box(50, -212, 802, 503.4);
-      let box2 = box1.padded(28.5);
+    var { x, y, width, height } = box2;
 
-      let { x, y, width, height } = box2;
-      expect({ x, y, width, height }).toStrictEqual({ x: 21.5, y: -240.5, width: 859, height: 560.4 });
-    });
+    expect({ x, y, width, height }).toStrictEqual({ x: 32, y: 63, width: 73, height: 15 });
 
-    test('padding by a relative factor', () => {
-      // width is larger
-      var box1 = new Box(-28, 5, 105, 53);
-      var box2 = box1.padded({ factor: 1.8 });
+    // specifying only horizontal padding
+    var box1 = new Box(50, -212, 802, 503.4);
+    var box2 = box1.padded(28.5);
 
-      expect(box2.x).toBeCloseTo((-28) - (1.8 * 105));
-      expect(box2.y).toBeCloseTo(5 - (1.8 * 53));
-      expect(box2.width).toBeCloseTo(105 + (2 * 1.8 * 105));
-      expect(box2.height).toBeCloseTo(53 + (2 * 1.8 * 53));
+    var { x, y, width, height } = box2;
+    expect({ x, y, width, height }).toStrictEqual({ x: 21.5, y: -240.5, width: 859, height: 560.4 });
 
-      // height is larger
-      var box1 = new Box(12, 50, 82, 91);
-      var box2 = box1.padded({ factor: 0.1 });
+    // width is larger
+    var box1 = new Box(-28, 5, 105, 53);
 
-      expect(box2.x).toBeCloseTo(12 - (0.1 * 82));
-      expect(box2.y).toBeCloseTo(50 - (0.1 * 91));
-      expect(box2.width).toBeCloseTo(82 + (2 * 0.1 * 82));
-      expect(box2.height).toBeCloseTo(91 + (2 * 0.1 * 91));
-    });
+    // padding by a relative factor
+    var box2 = box1.padded({ factor: 1.8 });
 
-    test('padding by a percentage', () => {
-      var box1 = new Box(-28, 5, 105, 53);
+    expect(box2.x).toBeCloseTo((-28) - (1.8 * 105));
+    expect(box2.y).toBeCloseTo(5 - (1.8 * 53));
+    expect(box2.width).toBeCloseTo(105 + (2 * 1.8 * 105));
+    expect(box2.height).toBeCloseTo(53 + (2 * 1.8 * 53));
 
-      var box2 = box1.padded({ percentage: 180 });
+    // height is larger
+    var box1 = new Box(12, 50, 82, 91);
 
-      expect(box2.x).toBeCloseTo((-28) - (1.8 * 105));
-      expect(box2.y).toBeCloseTo(5 - (1.8 * 53));
-      expect(box2.width).toBeCloseTo(105 + (2 * 1.8 * 105));
-      expect(box2.height).toBeCloseTo(53 + (2 * 1.8 * 53));
-    });
+    // padding by a relative factor
+    var box2 = box1.padded({ factor: 0.1 });
+
+    expect(box2.x).toBeCloseTo(12 - (0.1 * 82));
+    expect(box2.y).toBeCloseTo(50 - (0.1 * 91));
+    expect(box2.width).toBeCloseTo(82 + (2 * 0.1 * 82));
+    expect(box2.height).toBeCloseTo(91 + (2 * 0.1 * 91));
+
+    // padding by a percentage
+    var box1 = new Box(-28, 5, 105, 53);
+
+    var box2 = box1.padded({ percentage: 180 });
+
+    expect(box2.x).toBeCloseTo((-28) - (1.8 * 105));
+    expect(box2.y).toBeCloseTo(5 - (1.8 * 53));
+    expect(box2.width).toBeCloseTo(105 + (2 * 1.8 * 105));
+    expect(box2.height).toBeCloseTo(53 + (2 * 1.8 * 53));
   });
 
   test('`get periphery()`', () => {
@@ -240,3 +242,16 @@ describe('Box class', () => {
     expect(box.periphery.atAngle(-Math.PI / 4).y).toBeCloseTo(20);
   });
 });
+
+class BoxLike {
+  static create(x, y, width, height) {
+    return new BoxLike(x, y, width, height);
+  }
+
+  constructor(x, y, width, height) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+  }
+}
