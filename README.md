@@ -312,3 +312,63 @@ var box2 = new Box(0, 0, 5, 10);
 box1.bounds(box2); // true
 box2.bounds(box1); // false
 ```
+
+### `padded()`
+
+Creates and returns a new box with the specified padding around the original box.
+
+```javascript
+var box1 = new Box(0, 0, 10, 20);
+
+var box2 = box1.padded(5);
+
+box2.minX; // -5
+box2.minY; // -5
+box2.maxX; // 15
+box2.maxY; // 25
+```
+
+Different horizontal and vertical paddings can be specified.
+
+```javascript
+var box1 = new Box(0, 0, 10, 20);
+
+var horizontalPadding = 5;
+var verticalPadding = 1;
+
+var box2 = box1.padded(horizontalPadding, verticalPadding);
+
+box2.minX; // -5
+box2.minY; // -1
+box2.maxX; // 15
+box2.maxY; // 21
+```
+
+Padding can also be specified using a relative factor
+(relative to the dimensions of the box).
+
+```javascript
+var box1 = new Box(0, 0, 10, 20);
+
+// 10% padding on each side
+var box2 = box1.padded({ factor: 0.1 });
+
+box2.minX; // -1
+box2.minY; // -2
+box2.maxX; // 1
+box2.maxY; // 22
+```
+
+Alternatively, padding can be specified using a percentage value.
+
+```javascript
+var box1 = new Box(0, 0, 10, 20);
+
+// 10% padding on each side
+var box2 = box1.padded({ percentage: 10 });
+
+box2.minX; // -1
+box2.minY; // -2
+box2.maxX; // 1
+box2.maxY; // 22
+```
