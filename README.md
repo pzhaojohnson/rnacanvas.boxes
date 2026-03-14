@@ -114,7 +114,47 @@ This method will throw for empty collections of box-like objects.
 Box.bounding([]); // throws
 ```
 
-### `get centerX()`
+### `readonly x`
+
+Minimum X coordinate.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.x; // 0
+```
+
+### `readonly y`
+
+Minimum Y coordinate.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.y; // 100
+```
+
+### `readonly width`
+
+The width of the box.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.width; // 10
+```
+
+### `readonly height`
+
+The height of the box.
+
+```javascript
+var box = new Box(0, 100, 10, 20);
+
+box.height; // 20
+```
+
+### `readonly centerX`
 
 Center X coordinate.
 
@@ -124,7 +164,7 @@ var box = new Box(0, 100, 10, 20);
 box.centerX; // 5
 ```
 
-### `get centerY()`
+### `readonly centerY`
 
 Center Y coordinate.
 
@@ -134,7 +174,7 @@ var box = new Box(0, 100, 10, 20);
 box.centerY; // 110
 ```
 
-### `get minX()`
+### `readonly minX`
 
 Minimum X coordinate.
 
@@ -144,7 +184,7 @@ var box = new Box(0, 100, 10, 20);
 box.minX; // 0
 ```
 
-### `get minY()`
+### `readonly minY`
 
 Minimum Y coordinate.
 
@@ -154,7 +194,7 @@ var box = new Box(0, 100, 10, 20);
 box.minY; // 100
 ```
 
-### `get maxX()`
+### `readonly maxX`
 
 Maximum X coordinate.
 
@@ -164,7 +204,7 @@ var box = new Box(0, 100, 10, 20);
 box.maxX; // 10
 ```
 
-### `get maxY()`
+### `readonly maxY`
 
 Maximum Y coordinate.
 
@@ -174,7 +214,7 @@ var box = new Box(0, 100, 10, 20);
 box.maxY; // 120
 ```
 
-### `get top()`
+### `readonly top`
 
 Minimum Y coordinate.
 
@@ -184,7 +224,7 @@ var box = new Box(0, 100, 10, 20);
 box.top; // 100
 ```
 
-### `get right()`
+### `readonly right`
 
 Maximum X coordinate.
 
@@ -194,7 +234,7 @@ var box = new Box(0, 100, 10, 20);
 box.right; // 10
 ```
 
-### `get bottom()`
+### `readonly bottom`
 
 Maximum Y coordinate.
 
@@ -204,7 +244,7 @@ var box = new Box(0, 100, 10, 20);
 box.bottom; // 120
 ```
 
-### `get left()`
+### `readonly left`
 
 Minimum X coordinate.
 
