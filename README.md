@@ -78,3 +78,14 @@ box.height == circle.getBBox().height; // true
 ```
 
 <b>Note that DOM elements must be added to the document body for methods such as </b> `getBBox()` <b>to work.</b>
+
+Any object implementing the following interface can be input to the `static matching()` method.
+
+```typescript
+interface BoxLike {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+```
