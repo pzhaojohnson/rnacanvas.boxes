@@ -52,10 +52,7 @@ describe('Box class', () => {
     });
 
     test('an empty array of boxes', () => {
-      let bbox = Box.bounding([]);
-
-      // still returns a box instance
-      expect(bbox).toBeInstanceOf(Box);
+      expect(() => Box.bounding([])).toThrow();
     });
   });
 
