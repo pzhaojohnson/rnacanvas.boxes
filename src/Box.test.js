@@ -184,6 +184,17 @@ describe('Box class', () => {
       expect(box2.width).toBeCloseTo(82 + (2 * 0.1 * 82));
       expect(box2.height).toBeCloseTo(91 + (2 * 0.1 * 91));
     });
+
+    test('padding by a percentage', () => {
+      var box1 = new Box(-28, 5, 105, 53);
+
+      var box2 = box1.padded({ percentage: 180 });
+
+      expect(box2.x).toBeCloseTo((-28) - (1.8 * 105));
+      expect(box2.y).toBeCloseTo(5 - (1.8 * 53));
+      expect(box2.width).toBeCloseTo(105 + (2 * 1.8 * 105));
+      expect(box2.height).toBeCloseTo(53 + (2 * 1.8 * 53));
+    });
   });
 
   test('`peripheralPoint()`', () => {

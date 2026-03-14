@@ -136,6 +136,7 @@ export class Box {
   padded(horizontalPadding: number): Box;
   padded(horizontalPadding: number, verticalPadding: number): Box;
   padded(options: { factor: number }): Box;
+  padded(options: { percentage: number }): Box;
 
   /**
    * Creates and returns a new box with the specified horizontal and vertical paddings
@@ -143,25 +144,29 @@ export class Box {
    *
    * Vertical padding is interpreted to be the same as horizontal padding if left unspecified.
    *
-   * Alternatively, horizontal and vertical paddings can be specified using a relative factor
+   * Alternatively, horizontal and vertical paddings can be specified using a relative factor or percentage
    * (relative to the width and height of the box).
    *
    * Horizontal and vertical paddings are allowed to be negative
    * (to produce a box smaller than the original box).
    */
-  padded(...args: [number] | [number, number] | [{ factor: number }]): Box {
+  padded(...args: [number] | [number, number] | [{ factor: number }] | [{ percentage: number }]): Box {
     let horizontalPadding = typeof args[0] == 'number' ? (
       args[0]
-    ) : (
+    ) : 'factor' in args[0] ? (
       args[0].factor * this.width
+    ) : (
+      (args[0].percentage / 100) * this.width
     );
 
     let verticalPadding = typeof args[0] == 'number' && typeof args[1] == 'number' ? (
       args[1]
     ) : typeof args[0] == 'number' ? (
       args[0]
-    ) : (
+    ) : 'factor' in args[0] ? (
       args[0].factor * this.height
+    ) : (
+      (args[0].percentage / 100) * this.height
     );
 
     return new Box(
