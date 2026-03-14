@@ -89,3 +89,21 @@ interface BoxLike {
   height: number;
 }
 ```
+
+### `static bounding()`
+
+Bounding boxes can also be created for collections of box-like objects.
+
+```javascript
+// some SVG elements
+circle instanceof SVGCircleElement; // true
+rect instanceof SVGRectElement; // true
+text instanceof SVGTextElement; // true
+
+// the box bounding the three elements
+var boundingBox = Box.bounding([
+  circle.getBBox(),
+  rect.getBBox(),
+  text.getBBox(),
+]);
+```
