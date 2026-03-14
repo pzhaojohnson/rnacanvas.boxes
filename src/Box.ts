@@ -1,14 +1,6 @@
-import { min, max } from '@rnacanvas/math';
+import type { BoxLike } from './BoxLike';
 
-/**
- * An object like a box.
- */
-type BoxLike = {
-  readonly x: number;
-  readonly y: number;
-  readonly width: number;
-  readonly height: number;
-};
+import { min, max } from '@rnacanvas/math';
 
 /**
  * Represents a box (similar to objects returned by methods like `getBBox` and `getBoundingClientRect`).
