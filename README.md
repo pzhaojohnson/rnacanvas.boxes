@@ -176,7 +176,7 @@ box.centerY; // 110
 
 ### `readonly minX`
 
-Minimum X coordinate.
+Alias for the minimum X coordinate.
 
 ```javascript
 var box = new Box(0, 100, 10, 20);
@@ -186,7 +186,7 @@ box.minX; // 0
 
 ### `readonly minY`
 
-Minimum Y coordinate.
+Alias for the minimum Y coordinate.
 
 ```javascript
 var box = new Box(0, 100, 10, 20);
