@@ -92,7 +92,7 @@ interface BoxLike {
 
 ### `static bounding()`
 
-Bounding boxes can also be created for collections of box-like objects.
+Boxes can also be created bounding a collection of box-like objects.
 
 ```javascript
 // some SVG elements
@@ -106,4 +106,10 @@ var boundingBox = Box.bounding([
   rect.getBBox(),
   text.getBBox(),
 ]);
+```
+
+This method will throw for empty collections of box-like objects.
+
+```javascript
+Box.bounding([]); // throws
 ```
