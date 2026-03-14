@@ -120,17 +120,16 @@ export class Box {
   }
 
   /**
-   * Returns true if the box is bounded by the other box-like object
-   * and returns false otherwise.
+   * Returns true if the box bounds the other box.
    */
-  isBoundedBy(other: BoxLike): boolean {
+  bounds(other: BoxLike): boolean {
     let otherBox = Box.matching(other);
 
     return (
-      this.minX >= otherBox.minX
-      && this.minY >= otherBox.minY
-      && this.maxX <= otherBox.maxX
-      && this.maxY <= otherBox.maxY
+      this.minX <= otherBox.minX
+      && this.minY <= otherBox.minY
+      && this.maxX >= otherBox.maxX
+      && this.maxY >= otherBox.maxY
     );
   }
 
