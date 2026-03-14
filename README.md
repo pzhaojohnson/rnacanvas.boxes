@@ -15,6 +15,31 @@ All exports of this package can be accessed as named imports.
 import { Box } from '@rnacanvas/boxes';
 ```
 
+## `interface BoxLike`
+
+Many box-like objects returned by DOM element methods such as `getBBox()` and `getBoundingClientRect()`
+implement the following interface.
+
+```typescript
+interface BoxLike {
+  /**
+   * Minimum X coordinate.
+   */
+  readonly x: number;
+
+  /**
+   * Minimum Y coordinate.
+   */
+  readonly y: number;
+
+  readonly width: number;
+  readonly height: number;
+}
+```
+
+The `Box` class (below) also implements this interface
+and can be instantiated from box-like objects.
+
 ## `class Box`
 
 A two-dimensional box.
