@@ -197,46 +197,46 @@ describe('Box class', () => {
     });
   });
 
-  test('`peripheralPoint()`', () => {
+  test('`get periphery()`', () => {
     var box = new Box(52, -18, 28, 16);
 
     // sine is zero
-    expect(box.peripheralPoint(0).x).toBeCloseTo(80);
-    expect(box.peripheralPoint(0).y).toBeCloseTo(-10);
+    expect(box.periphery.atAngle(0).x).toBeCloseTo(80);
+    expect(box.periphery.atAngle(0).y).toBeCloseTo(-10);
 
     // cosine is zero
-    expect(box.peripheralPoint(Math.PI / 2).x).toBeCloseTo(66);
-    expect(box.peripheralPoint(Math.PI / 2).y).toBeCloseTo(-2);
+    expect(box.periphery.atAngle(Math.PI / 2).x).toBeCloseTo(66);
+    expect(box.periphery.atAngle(Math.PI / 2).y).toBeCloseTo(-2);
 
     // sine is zero
-    expect(box.peripheralPoint(Math.PI).x).toBeCloseTo(52);
-    expect(box.peripheralPoint(Math.PI).y).toBeCloseTo(-10);
+    expect(box.periphery.atAngle(Math.PI).x).toBeCloseTo(52);
+    expect(box.periphery.atAngle(Math.PI).y).toBeCloseTo(-10);
 
     // cosine is zero
-    expect(box.peripheralPoint(3 * Math.PI / 2).x).toBeCloseTo(66);
-    expect(box.peripheralPoint(3 * Math.PI / 2).y).toBeCloseTo(-18);
+    expect(box.periphery.atAngle(3 * Math.PI / 2).x).toBeCloseTo(66);
+    expect(box.periphery.atAngle(3 * Math.PI / 2).y).toBeCloseTo(-18);
 
     // sine is positive and cosine is negative
-    expect(box.peripheralPoint(2 * Math.PI / 3).x).toBeCloseTo(61.381197846483);
-    expect(box.peripheralPoint(2 * Math.PI / 3).y).toBeCloseTo(-2);
+    expect(box.periphery.atAngle(2 * Math.PI / 3).x).toBeCloseTo(61.381197846483);
+    expect(box.periphery.atAngle(2 * Math.PI / 3).y).toBeCloseTo(-2);
 
     // sine is negative and cosine is positive
-    expect(box.peripheralPoint(-Math.PI / 12).x).toBeCloseTo(80);
-    expect(box.peripheralPoint(-Math.PI / 12).y).toBeCloseTo(-13.751288694035718);
+    expect(box.periphery.atAngle(-Math.PI / 12).x).toBeCloseTo(80);
+    expect(box.periphery.atAngle(-Math.PI / 12).y).toBeCloseTo(-13.751288694035718);
 
     // width is zero
     var box = new Box(20, 10, 0, 5);
-    expect(box.peripheralPoint(Math.PI / 3).x).toBeCloseTo(20);
-    expect(box.peripheralPoint(Math.PI / 3).y).toBeCloseTo(12.5);
+    expect(box.periphery.atAngle(Math.PI / 3).x).toBeCloseTo(20);
+    expect(box.periphery.atAngle(Math.PI / 3).y).toBeCloseTo(12.5);
 
     // height is zero
     var box = new Box(-12, 5, 10, 0);
-    expect(box.peripheralPoint(Math.PI / 6).x).toBeCloseTo(-7);
-    expect(box.peripheralPoint(Math.PI / 6).y).toBeCloseTo(5);
+    expect(box.periphery.atAngle(Math.PI / 6).x).toBeCloseTo(-7);
+    expect(box.periphery.atAngle(Math.PI / 6).y).toBeCloseTo(5);
 
     // width and height are both zero
     var box = new Box(10, 20, 0, 0);
-    expect(box.peripheralPoint(-Math.PI / 4).x).toBeCloseTo(10);
-    expect(box.peripheralPoint(-Math.PI / 4).y).toBeCloseTo(20);
+    expect(box.periphery.atAngle(-Math.PI / 4).x).toBeCloseTo(10);
+    expect(box.periphery.atAngle(-Math.PI / 4).y).toBeCloseTo(20);
   });
 });
